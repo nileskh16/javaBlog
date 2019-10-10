@@ -1,5 +1,6 @@
 package in.nileskh.framework.blogapp.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,17 +11,25 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableWebSecurity
 public class RestAuthConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    DataSource dataSource;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // super.configure(auth);
-        auth.inMemoryAuthentication()
-                .withUser("user").password("{noop}user123").roles("USER")
-                .and()
-                .withUser("admin").password("{noop}admin123").roles("ADMIN");
+//        auth.inMemoryAuthentication()
+//                .withUser("user").password("{noop}user123").roles("USER")
+//                .and()
+//                .withUser("admin").password("{noop}admin123").roles("ADMIN");
+
+        auth.jdbcAuthentication()
+                .dataSource(dataSource);
     }
 
     @Override
