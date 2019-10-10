@@ -6,6 +6,7 @@ spring:
     url: jdbc:mysql://localhost:3306/blogapp
     username: admin
     password: admin@123
+    driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
     hibernate:
