@@ -3,7 +3,7 @@ package in.create.arena.blogapp.helpers;
 public class HelperMain {
 
     public static void main(String[] args) {
-        runCrawlDir();
+        runKruskal();
     }
 
     private static void runThreads() {
@@ -35,5 +35,10 @@ public class HelperMain {
     private static void runCrawlDir() {
         AllAboutDirectory abDir = new AllAboutDirectory("\\\\PKOTHALE-T460\\Team Docs\\Monthly Plan");
         abDir.crawlDirectory();
+    }
+
+    private static void runKruskal() {
+        MSTKruskal mstKruskal = new MSTKruskal(6);
+        mstKruskal.demoKruskalAlgo();
     }
 }
